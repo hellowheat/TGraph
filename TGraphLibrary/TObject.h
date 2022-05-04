@@ -1,5 +1,7 @@
 /*
 * v0.1,htp,2022/5/2
+* v0.12,htp,2022/5/3.
+*	add toSub method
 */
 #pragma once
 #include<string>
@@ -42,9 +44,18 @@ private:
 	public:
 		TObj() {
 		}
-		TInit(TObj)
+		template<class C> C ToSub();
+
+		TInit(TObj);
+
 	};
 	inline std::ostream& operator<<(std::ostream& os,TObj obj) {
 		return os << "TObj object";
+	}
+
+	template<class C>
+	inline C TObj::ToSub()
+	{
+		return *static_cast<C*>(this);
 	}
 }

@@ -1,10 +1,12 @@
 /*
 * v0.1,htp,2022/5/2
+* v0.12,htp,2022/5/3.
+*	add multiply number operator and  they change.
+*	add multiply other Vector<T,N> operator.
 */
 #pragma once
 #include"TObject.h"
 namespace TG {
-
 	//Vector
 	template<class T,int N>
 	class TVec
@@ -17,6 +19,7 @@ namespace TG {
 		TVec(T*& data);
 		TVec(const TVec& vec);
 		T* GetData();
+		const T* GetConstData() const;
 
 		double Norm(int n) const;//·¶Êý
 		double Length() const;
@@ -27,12 +30,18 @@ namespace TG {
 		T operator[](int index);
 		template<class B> TVec<T, N> operator+(const TVec<B, N>& vec) const;
 		template<class B> TVec<T, N> operator-(const TVec<B, N>& vec) const;
+		TVec<T, N> operator*(const double num) const;
+		T operator*(const TVec<T, N>& vec) const;
 		template<class B> bool operator==(const TVec<B, N>& vec) const;
-
 
 	protected:
 		T m_data[N];
-	};
+	}; 
+	
+
+	template<class T, int N> TVec<T, N> operator*(const double num,const TVec<T, N> vec) {
+		return vec * num;
+	}
 
 	template<class T, int N>
 	inline std::ostream& operator<<(std::ostream& os, TVec<T,N> obj) {
@@ -77,6 +86,11 @@ namespace TG {
 	inline T* TVec<T, N>::GetData()
 	{
 		return &m_data[0];
+	}
+	template<class T, int N>
+	inline const T* TVec<T, N>::GetConstData() const
+	{
+		return m_data;
 	}
 	template<class T, int N>
 	inline double TVec<T, N>::Norm(int n) const
@@ -129,6 +143,7 @@ namespace TG {
 	{
 		return m_data[index];
 	}
+	
 	template<class T, int N>
 	template<class B>
 	inline TVec<T, N> TVec<T, N>::operator+(const TVec<B, N>& vec) const
@@ -146,6 +161,25 @@ namespace TG {
 		TVec<T, N> ans;
 		for (int i = 0; i < N; i++) {
 			ans.m_data[i] = this->m_data[i] - vec.m_data[i];
+		}
+		return ans;
+	}
+	
+	template<class T, int N>
+	inline TVec<T, N> TVec<T, N>::operator*(const double num) const
+	{
+		TVec<T, N> ans;
+		for (int i = 0; i < N; i++) {
+			ans.m_data[i] = this->m_data[i] * num;
+		}
+		return ans;
+	}
+	template<class T, int N>
+	inline T TVec<T, N>::operator*(const TVec<T, N>& vec) const
+	{
+		T ans = 0;
+		for (int i = 0; i < N; i++) {
+			ans += this->m_data[i] * vec.m_data[i];
 		}
 		return ans;
 	}

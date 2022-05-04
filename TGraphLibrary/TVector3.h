@@ -1,5 +1,9 @@
 /*
 * v0.1,htp,2022/5/2
+* v0.12,htp,2022/5/3.
+*	add vector<T,3> object to vector3<T> object construct function.
+*	add get x、y、z function
+*	add static const value up、down、left、right、forward、back、one、zero.
 */
 #pragma once
 #include"TVector.h"
@@ -27,9 +31,34 @@ namespace TG {
 private: 
 	public:
 		TVec3();
+		TVec3(const TVec<T, 3>&vec);
 		TVec3(T x, T y, T z);
 
+		T x() const;
+		T y() const;
+		T z() const;
+
+		static TVec3 one;//(1,1,1 )
+		static const TVec3 zero;//(0,0,0 )
+		static const TVec3 up;//(0,1,0 )
+		static const TVec3 down;//(0,-1,0 )
+		static const TVec3 left;//(-1,0,0 )
+		static const TVec3 right;//(1,0,0 )
+		static const TVec3 forward;//(0,0,-1 )
+		static const TVec3 back;//(0,0,1 )
+
+		TVec3<T>& operator=(const TVec3<T>& vec);
 	};
+
+
+	template<class T> TVec3<T> TVec3<T>::one = { 1, 1, 1 };
+	template<class T> const TVec3<T> TVec3<T>::zero = { 0,0,0 };
+	template<class T> const TVec3<T> TVec3<T>::up = { 0,1,0 };
+	template<class T> const TVec3<T> TVec3<T>::down = { 0,-1,0 };
+	template<class T> const TVec3<T> TVec3<T>::left = { -1,0,0 };
+	template<class T> const TVec3<T> TVec3<T>::right = { 1,0,0 };
+	template<class T> const TVec3<T> TVec3<T>::forward = { 0,0,-1 };
+	template<class T> const TVec3<T> TVec3<T>::back = { 0,0,1 };
 
 	template<class T>
 	inline TVec3<T>::TVec3()
@@ -38,11 +67,47 @@ private:
 	}
 
 	template<class T>
+	inline TVec3<T>::TVec3(const TVec<T, 3>& vec)
+	{
+		this->m_data[0] = vec.GetConstData()[0];
+		this->m_data[1] = vec.GetConstData()[1];
+		this->m_data[2] = vec.GetConstData()[2];
+	}
+
+	template<class T>
 	inline TVec3<T>::TVec3(T x, T y, T z)
+		: TVec<T, 3>()
 	{
 		this->m_data[0] = x;
 		this->m_data[1] = y;
 		this->m_data[2] = z;
+	}
+
+
+	template<class T>
+	inline T TVec3<T>::x() const
+	{
+		return this->m_data[0];
+	}
+
+	template<class T>
+	inline T TVec3<T>::y() const
+	{
+		return this->m_data[1];
+	}
+
+	template<class T>
+	inline T TVec3<T>::z() const
+	{
+		return this->m_data[2];
+	}
+
+	template<class T>
+	inline TVec3<T>& TVec3<T>::operator=(const TVec3<T> & vec)
+	{
+		this->m_data[0] = vec.m_data[0];
+		this->m_data[1] = vec.m_data[1];
+		this->m_data[2] = vec.m_data[2];
 	}
 
 

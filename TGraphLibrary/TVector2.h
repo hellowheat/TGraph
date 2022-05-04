@@ -1,5 +1,8 @@
 /*
 * v0.1,htp,2022/5/2
+* v0.12,htp,2022/5/3.
+*	add vector<T,2> object to vector2<T> object construct function.
+*	add get x¡¢y function
 */
 #pragma once
 #include"TVector.h"
@@ -27,7 +30,11 @@ namespace TG {
 		TInit(TVec2, TVec<T,2>)
 	public:
 		TVec2();
+		TVec2(TVec<T, 2>&vec);
 		TVec2(T x, T y);
+
+		T x() const;
+		T y() const;
 	};
 
 	template<class T>
@@ -41,6 +48,18 @@ namespace TG {
 	{
 		this->m_data[0] = x;
 		this->m_data[1] = y;
+	}
+
+	template<class T>
+	inline T TVec2<T>::x() const
+	{
+		return this->m_data[0];
+	}
+
+	template<class T>
+	inline T TVec2<T>::y() const
+	{
+		return this->m_data[1];
 	}
 
 

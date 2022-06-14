@@ -6,7 +6,7 @@
 *	add static const value up、down、left、right、forward、back、one、zero.
 */
 #pragma once
-#include"TVector.h"
+#include"TVector.hpp"
 #define TrebleConstruct(Class,Type) \
 public:\
 	Class()\

@@ -5,7 +5,7 @@
 *	add multiply other Vector<T,N> operator.
 */
 #pragma once
-#include"TObject.h"
+#include"TObject.hpp"
 namespace TG {
 	//Vector
 	template<class T,int N>

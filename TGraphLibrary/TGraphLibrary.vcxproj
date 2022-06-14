@@ -140,16 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="testMain.cpp" />
-    <ClCompile Include="TObject.cpp" />
-    <ClCompile Include="TVector.cpp" />
-    <ClCompile Include="TVector2.cpp" />
-    <ClCompile Include="TVector3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TObject.h" />
-    <ClInclude Include="TVector.h" />
-    <ClInclude Include="TVector2.h" />
-    <ClInclude Include="TVector3.h" />
+    <ClInclude Include="TObject.hpp" />
+    <ClInclude Include="TVector.hpp" />
+    <ClInclude Include="TVector2.hpp" />
+    <ClInclude Include="TVector3.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

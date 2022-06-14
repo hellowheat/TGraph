@@ -1,8 +1,8 @@
 
-#include"TObject.h"
-#include"TVector.h"
-#include"TVector2.h"
-#include"TVector3.h"
+#include"TObject.hpp"
+#include"TVector.hpp"
+#include"TVector2.hpp"
+#include"TVector3.hpp"
 #include<assert.h>
 #include<iostream>
 using namespace std;
@@ -55,6 +55,7 @@ void TestTVec3() {
 	cout << boolalpha;
 	cout << "TVec3Àà²âÊÔ£º" << endl;
 	assert((f2 + f) == TG::TVec3<float>(4, 14, 3));
+	assert(TG::TVec3f::back == TG::TVec3<float>::back);
 	cout << "Success" << endl << endl;
 }
 #define w(s) #s

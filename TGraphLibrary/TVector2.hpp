@@ -5,7 +5,7 @@
 *	add get x¡¢y function
 */
 #pragma once
-#include"TVector.h"
+#include"TVector.hpp"
 
 #define DoubleConstruct(Class,Type) \
 public:\

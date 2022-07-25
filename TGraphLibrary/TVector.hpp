@@ -1,9 +1,4 @@
-/*
-* v0.1,htp,2022/5/2
-* v0.12,htp,2022/5/3.
-*	add multiply number operator and  they change.
-*	add multiply other Vector<T,N> operator.
-*/
+
 #pragma once
 #include"TObject.hpp"
 namespace TG {
@@ -33,6 +28,7 @@ namespace TG {
 		TVec<T, N> operator*(const double num) const;
 		T operator*(const TVec<T, N>& vec) const;
 		template<class B> bool operator==(const TVec<B, N>& vec) const;
+		template<class B> bool operator!=(const TVec<B, N>& vec) const;
 
 	protected:
 		T m_data[N];
@@ -187,12 +183,20 @@ namespace TG {
 	template<class B>
 	inline bool TVec<T, N>::operator==(const TVec<B, N>& vec) const
 	{
-
 		for (int i = 0; i < N; i++) {
 			if (this->m_data[i] != vec.m_data[i])return false;
 		}
 		return true;
 	}
 
+	template<class T, int N>
+	template<class B>
+	inline bool TVec<T, N>::operator!=(const TVec<B, N>& vec) const
+	{
+		for (int i = 0; i < N; i++) {
+			if (this->m_data[i] != vec.m_data[i])return true;
+		}
+		return true;
+	}
 }
 

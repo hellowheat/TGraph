@@ -1,9 +1,4 @@
-/*
-* v0.1,htp,2022/5/2
-* v0.12,htp,2022/5/3.
-*	add vector<T,2> object to vector2<T> object construct function.
-*	add get x¡¢y function
-*/
+
 #pragma once
 #include"TVector.hpp"
 
@@ -20,6 +15,20 @@ public:\
 	Class(Type* data)\
 		:TVec2<Type>(data[0], data[1])\
 	{\
+	}\
+	Class(const TVec2<Type>& vec)\
+		:TVec2<Type>(vec.GetConstData()[0],vec.GetConstData()[1])\
+	{\
+	}\
+	Class(const TVec<Type,2>& vec)\
+		:TVec2<Type>(vec.GetConstData()[0],vec.GetConstData()[1])\
+	{\
+	}\
+	inline Class& operator=(const TVec2<Type>& vec)\
+	{\
+		this->m_data[0] = vec.GetConstData()[0];\
+		this->m_data[1] = vec.GetConstData()[1];\
+		return *this;\
 	}
 
 namespace TG {
@@ -35,7 +44,22 @@ namespace TG {
 
 		T x() const;
 		T y() const;
+
+		static const TVec2 normal;//(1,1 )
+		static const TVec2 zero;//(0,0 )
+		static const TVec2 up;//(0,1 )
+		static const TVec2 down;//(0,-1 )
+		static const TVec2 left;//(-1,0 )
+		static const TVec2 right;//(1,0 )
 	};
+
+
+	template<class T> const TVec2<T> TVec2<T>::normal = { 1, 1 };
+	template<class T> const TVec2<T> TVec2<T>::zero = { 0,0 };
+	template<class T> const TVec2<T> TVec2<T>::up = { 0,1 };
+	template<class T> const TVec2<T> TVec2<T>::down = { 0,-1 };
+	template<class T> const TVec2<T> TVec2<T>::left = { -1,0 };
+	template<class T> const TVec2<T> TVec2<T>::right = { 1,0 };
 
 	template<class T>
 	inline TVec2<T>::TVec2()

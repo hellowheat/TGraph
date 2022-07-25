@@ -1,13 +1,9 @@
-/*
-* v0.1,htp,2022/5/2
-* v0.12,htp,2022/5/3.
-*	add toSub method
-*/
 #pragma once
 #include<string>
 #include<iostream>
 namespace TG {
-	//初始化,涉及模板类时，第一个参数为子类不写模板参数，第二个参数为父类要写
+	//初始化
+	//涉及模板类时，第一个参数为子类不写模板参数，第二个参数为父类要写
 #define TInit(...) TCONNECT(TInit,TCOUNT(__VA_ARGS__))(__VA_ARGS__)
 
 #define TCALCCOUNT2(_1,_2, _3,_4,_5, N, ...) N
@@ -39,6 +35,10 @@ public:\
 	}\
 private:
 
+
+
+
+	//Object类
 	class TObj
 	{
 	public:

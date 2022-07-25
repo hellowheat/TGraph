@@ -43,8 +43,11 @@ void TestTVec() {
 void TestTVec2() {
 	TG::TVec2<float> f(1, 2);
 	TG::TVec2<float> f2(3,12);
+	TG::TVec2f f3 = f + f2;
 	cout << boolalpha;
 	cout << "TVec2Àà²âÊÔ£º" << endl;
+	assert(f3 == TG::TVec2f(4, 14));
+	assert(f3 != TG::TVec2f(4,15));
 	assert((f2-f) == TG::TVec2<float>(2,10));
 	TG::TVec2f v2(1, 2);
 	cout << "Success" << endl << endl;
@@ -52,10 +55,16 @@ void TestTVec2() {
 void TestTVec3() {
 	TG::TVec3<float> f(1, 2, 2);
 	TG::TVec3<float> f2(3, 12, 1);
+	TG::TVec3f f3 = f + f2;
+	TG::TVec3<float>f4 = { 1,2,3 };
+	TG::TVec3f f5 = (f + f) * 1.5 - f;
 	cout << boolalpha;
 	cout << "TVec3Àà²âÊÔ£º" << endl;
+	assert(f3 == TG::TVec3f(4, 14, 3));
+	assert(f3 != TG::TVec3f(3, 14, 3));
 	assert((f2 + f) == TG::TVec3<float>(4, 14, 3));
 	assert(TG::TVec3f::back == TG::TVec3<float>::back);
+	assert(f5 == TG::TVec3f(2, 4, 4));
 	cout << "Success" << endl << endl;
 }
 #define w(s) #s

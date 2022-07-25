@@ -1,10 +1,4 @@
-/*
-* v0.1,htp,2022/5/2
-* v0.12,htp,2022/5/3.
-*	add vector<T,3> object to vector3<T> object construct function.
-*	add get x、y、z function
-*	add static const value up、down、left、right、forward、back、one、zero.
-*/
+
 #pragma once
 #include"TVector.hpp"
 #define TrebleConstruct(Class,Type) \
@@ -20,9 +14,25 @@ public:\
 	Class(Type* data)\
 		:TVec3<Type>(data[0], data[1], data[2])\
 	{\
+	}\
+	Class(const TVec3<Type>& vec)\
+		:TVec3<Type>(vec.GetConstData()[0],vec.GetConstData()[1],vec.GetConstData()[2])\
+	{\
+	}\
+	Class(const TVec<Type,3>& vec)\
+		:TVec3<Type>(vec.GetConstData()[0],vec.GetConstData()[1],vec.GetConstData()[2])\
+	{\
+	}\
+	inline Class& operator=(const TVec3<Type>& vec)\
+	{\
+		this->m_data[0] = vec.GetConstData()[0];\
+		this->m_data[1] = vec.GetConstData()[1];\
+		this->m_data[2] = vec.GetConstData()[2];\
+		return *this;\
 	}
-namespace TG {
 
+namespace TG {
+	//系统是右手系
 	template<class T>
 	class TVec3
 		:public TVec<T, 3>
@@ -38,7 +48,7 @@ private:
 		T y() const;
 		T z() const;
 
-		static TVec3 one;//(1,1,1 )
+		static const TVec3 normal;//(1,1,1 )
 		static const TVec3 zero;//(0,0,0 )
 		static const TVec3 up;//(0,1,0 )
 		static const TVec3 down;//(0,-1,0 )
@@ -51,7 +61,7 @@ private:
 	};
 
 
-	template<class T> TVec3<T> TVec3<T>::one = { 1, 1, 1 };
+	template<class T> const TVec3<T> TVec3<T>::normal = { 1, 1, 1 };
 	template<class T> const TVec3<T> TVec3<T>::zero = { 0,0,0 };
 	template<class T> const TVec3<T> TVec3<T>::up = { 0,1,0 };
 	template<class T> const TVec3<T> TVec3<T>::down = { 0,-1,0 };
@@ -108,6 +118,7 @@ private:
 		this->m_data[0] = vec.m_data[0];
 		this->m_data[1] = vec.m_data[1];
 		this->m_data[2] = vec.m_data[2];
+		return *this;
 	}
 
 
